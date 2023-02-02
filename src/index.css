@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  @font-face {
+    font-family: Rubik;
+    src: url('./assets/fonts/Rubik.ttf');
+  }
+}
+
 .leaflet-container {
   width: 100%;
   height: 100vh;

@@ -22,23 +22,28 @@ function App() {
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    axios
-      .get(URL)
-      .then((res) => {
-        console.log(res.data);
-        setIpData(res.data);
-      })
-      .catch((err) => console.log(err));
+    // axios
+    //   .get(URL)
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     setIpData(res.data);
+    //   })
+    //   .catch((err) => console.log(err));
+    console.log("Hello Good")
   };
 
   return (
     <div className="text-center">
       <div
         style={{ backgroundImage: `url(${patternBg})` }}
-        className="relative bg-no-repeat w-full h-[200px] bg-cover flex flex-col justify-center gap-4"
+        className="relative bg-no-repeat w-full h-56 md:h-[300px] bg-cover flex flex-col justify-center gap-4 pt-0"
       >
-        <h1 className="text-white text-2xl">IP Address Tracker</h1>
-        <Search handleSubmit={handleSubmit} />
+        <h1 className="text-white font-bold text-3xl">IP Address Tracker</h1>
+        <Search
+          handleSubmit={handleSubmit}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+        />
         <IpInfoComp
           ipAddress={ipData.ip}
           location={`${ipData.location?.city}, ${ipData.location?.region}, ${ipData.location?.country}`}

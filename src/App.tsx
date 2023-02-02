@@ -3,6 +3,7 @@ import axios from "axios";
 import IpInfoComp from "./components/IpInfoComp";
 import Search from "./components/Search";
 import patternBg from "./assets/pattern-bg.png";
+import MapLeaf from "./components/MapLeaf";
 
 const API_KEY = "at_ItPWnXly4w5ik4PMO8blGk9rAIUoZ";
 
@@ -22,28 +23,31 @@ function App() {
   const handleSubmit = (event: any) => {
     event.preventDefault();
 
-    // axios
-    //   .get(URL)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     setIpData(res.data);
-    //   })
-    //   .catch((err) => console.log(err));
-    console.log("Hello Good")
+    axios
+      .get(URL)
+      .then((res) => {
+        console.log(res.data);
+        setIpData(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <div className="text-center">
       <div
         style={{ backgroundImage: `url(${patternBg})` }}
-        className="relative bg-no-repeat w-full h-56 md:h-[300px] bg-cover flex flex-col justify-center gap-4 pt-0"
+        className="relative bg-no-repeat w-full h-[300px] bg-cover flex flex-col justify-start md:justify-center gap-4 pt-0"
       >
-        <h1 className="text-white font-bold text-3xl">IP Address Tracker</h1>
-        <Search
-          handleSubmit={handleSubmit}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-        />
+        <div className="mt-12 md:mt-0">
+          <h1 className="text-white font-bold text-3xl mb-4">
+            IP Address Tracker
+          </h1>
+          <Search
+            handleSubmit={handleSubmit}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+          />
+        </div>
         <IpInfoComp
           ipAddress={ipData.ip}
           location={`${ipData.location?.city}, ${ipData.location?.region}, ${ipData.location?.country}`}
@@ -51,7 +55,10 @@ function App() {
           isp={ipData?.isp}
         />
       </div>
-      <div className="w-full bg-gray-600 h-screen"></div>
+      <MapLeaf
+        latitude={ipData.location?.lat}
+        longitude={ipData.location?.lng}
+      />
     </div>
   );
 }

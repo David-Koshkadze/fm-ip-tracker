@@ -1,4 +1,4 @@
-import React from "react";
+import arrow_svg from "../assets/icon-arrow.svg";
 
 export default function Search({
   handleSubmit,
@@ -14,11 +14,12 @@ export default function Search({
           value={inputValue}
           onChange={(event) => setInputValue(event.target.value)}
         />
-        <input
+        <button
           type="submit"
           className="absolute right-0 bg-gray-900 text-white rounded-r-xl w-12 h-12 cursor-pointer"
-          value=">"
-        />
+        >
+          <img src={arrow_svg} className="mx-auto"/>
+        </button>
       </div>
     </form>
   );

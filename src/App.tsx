@@ -5,8 +5,6 @@ import Search from "./components/Search";
 import patternBg from "./assets/pattern-bg.png";
 import MapLeaf from "./components/MapLeaf";
 
-const API_KEY = "at_ItPWnXly4w5ik4PMO8blGk9rAIUoZ";
-
 export interface IpDataTypes {
   ipAddress: string;
   location: string;
@@ -18,7 +16,7 @@ function App() {
   const [inputValue, setInputValue] = useState<string>("");
   const [ipData, setIpData] = useState<any>({});
 
-  const URL: string = `https://geo.ipify.org/api/v2/country,city?apiKey=${API_KEY}&ipAddress=${inputValue}`;
+  const URL: string = `https://geo.ipify.org/api/v2/country,city?apiKey=${import.meta.env.VITE_APP_IPIFY_KEY}&ipAddress=${inputValue}`;
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
